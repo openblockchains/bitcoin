@@ -68,7 +68,7 @@ pp kai == kai2
 
 ### Why Kai?
 
-The Kai notation/alphabet is named in honor of Kaigani
+The Kai notation/alphabet is named in honor of Kai Turner
 who first deciphered the CryptoKitty 256-bit genes in 5-bit groups - thanks!
 See [The CryptoKitties Genome Project: On Dominance, Inheritance and Mutation](https://medium.com/@kaigani/the-cryptokitties-genome-project-on-dominance-inheritance-and-mutation-b73059dcd0a4).
 
