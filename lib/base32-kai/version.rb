@@ -1,10 +1,9 @@
 # encoding: utf-8
 
-
 module Base32
 
   MAJOR = 0
-  MINOR = 0
+  MINOR = 1
   PATCH = 1
   VERSION = [MAJOR,MINOR,PATCH].join('.')
 

@@ -1,6 +1,10 @@
 HISTORY.md
+LICENSE.md
 Manifest.txt
 README.md
 Rakefile
 lib/base32-kai.rb
+lib/base32-kai/base32.rb
 lib/base32-kai/version.rb
+test/helper.rb
+test/test_base32.rb
