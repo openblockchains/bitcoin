@@ -1,0 +1,6 @@
+HISTORY.md
+Manifest.txt
+README.md
+Rakefile
+lib/base32-kai.rb
+lib/base32-kai/version.rb
