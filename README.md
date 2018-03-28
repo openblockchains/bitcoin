@@ -72,7 +72,7 @@ pp hex == hex2
 
 The Kai notation/alphabet is named in honor of Kai Turner
 who first deciphered the CryptoKitties 256-bit genes in 5-bit groups - thanks!
-See [The CryptoKitties Genome Project: On Dominance, Inheritance and Mutation](https://medium.com/@kaigani/the-cryptokitties-genome-project-on-dominance-inheritance-and-mutation-b73059dcd0a4), Jan 2018.
+See [The CryptoKitties Genome Project: On Dominance, Inheritance and Mutation](https://medium.com/@kaigani/the-cryptokitties-genome-project-on-dominance-inheritance-and-mutation-b73059dcd0a4), January 2018.
 
 
 
