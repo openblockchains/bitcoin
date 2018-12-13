@@ -2,6 +2,9 @@
 
 ## Todos
 
+- [ ]  add split or width parameter to encode for "auto-formatting" with one call - why? why not?
+   - e.g `encode32( num, width: 4 )`, `encode32( num, split: 4 )`
+
 
 
 ## More Base32 Libraries and Encodings

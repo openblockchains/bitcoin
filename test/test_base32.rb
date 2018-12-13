@@ -35,15 +35,15 @@ def test_kai
    pp kai2
 
    assert_equal kai, kai2
-   assert_equal kai_fmt, Kai.fmt( kai2 )
+   assert_equal kai_fmt, Base32::Kai.fmt( kai2 )
 
 
    hex2 = Base32.decode( kai2 )
    pp hex2
    assert_equal hex, hex2
 
-   kai3 = Kai.encode( hex )
-   hex3 = Kai.decode( kai3 )
+   kai3 = Base32::Kai.encode( hex )
+   hex3 = Base32::Kai.decode( kai3 )
    assert_equal hex, hex3
    assert_equal kai, kai3
 

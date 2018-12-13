@@ -98,7 +98,7 @@ BINARY = {
 =end
 
 ## simple hash map (helper) for conversion to binary string
-BINARY = build_binary( klass: self )
+BINARY = build_binary( ALPHABET )
 
 ## add shortcuts (convenience) aliases
 BIN = BINARY

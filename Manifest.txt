@@ -3,8 +3,13 @@ LICENSE.md
 Manifest.txt
 README.md
 Rakefile
-lib/base32-kai.rb
-lib/base32-kai/base32.rb
-lib/base32-kai/version.rb
+lib/base32-alphabets.rb
+lib/base32-alphabets/base.rb
+lib/base32-alphabets/base32.rb
+lib/base32-alphabets/crockford.rb
+lib/base32-alphabets/electrologica.rb
+lib/base32-alphabets/kai.rb
+lib/base32-alphabets/version.rb
 test/helper.rb
 test/test_base32.rb
+test/test_base32_crockford.rb

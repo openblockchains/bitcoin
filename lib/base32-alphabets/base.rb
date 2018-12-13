@@ -54,13 +54,12 @@ class Base
 
 ########################
 ## (private) helpers
-  def self.build_binary( klass: )
-    h = {}
-    klass::ALPHABET.each_with_index do |char,index|
+  def self.build_binary( alphabet )
+    alphabet.each_with_index.reduce({}) do |h, (char,index)|
       # puts "#{char} => #{index} #{'%05b' % index}"
       h[char] = '%05b' % index
+      h
     end
-    h
   end
 
 end # class Base

@@ -18,7 +18,7 @@ def self.encode( num ) super( num, klass: self ); end
 
 NUMBER = {    ## rename INTEGER /INT - why? why not??
   '0' => 0, 'o' => 0, 'O'=> 0,
-  '1' => 1, 'l' => 1, 'L'=> 1,
+  '1' => 1, 'l' => 1, 'L'=> 1, 'i'=> 1, 'I' => 1,
   '2' => 2,
   '3' => 3,
   '4' => 4,
@@ -55,7 +55,7 @@ def self.decode( str ) super( str, klass: self ); end
 
 
 ## simple hash map (helper) for conversion to binary string
-BINARY = build_binary( klass: self )
+BINARY = build_binary( ALPHABET )
 
 ## add shortcuts (convenience) aliases
 BIN = BINARY
