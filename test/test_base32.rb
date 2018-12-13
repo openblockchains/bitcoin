@@ -29,6 +29,7 @@ def test_kai
    puts "hex number:"
    pp hex
 
+   Base32.format = :kai
    kai2 = Base32.encode( hex )
    pp kai
    pp kai2

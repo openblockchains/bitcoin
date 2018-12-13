@@ -1,14 +1,14 @@
 require 'hoe'
-require './lib/base32-kai/version.rb'
+require './lib/base32-alphabets/version.rb'
 
-Hoe.spec 'base32-kai' do
+Hoe.spec 'base32-alphabets' do
 
   self.version = Base32::VERSION
 
-  self.summary = "base32-kai - base32 (2^5) encoding / decoding in 5-bit groups with kai notation/alphabet"
+  self.summary = "base32-alphabets - base32 (2^5) encoding / decoding in 5-bit groups with kai, crockford or electrologica notation / alphabet"
   self.description = summary
 
-  self.urls    = ['https://github.com/openblockchains/base32.kai.rb']
+  self.urls    = ['https://github.com/cryptocopycats/base32-alphabets']
 
   self.author  = 'Gerald Bauer'
   self.email   = 'wwwmake@googlegroups.com'

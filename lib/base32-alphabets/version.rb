@@ -2,9 +2,10 @@
 
 module Base32
 
-  MAJOR = 0
-  MINOR = 1
-  PATCH = 1
+
+  MAJOR = 1
+  MINOR = 0
+  PATCH = 0
   VERSION = [MAJOR,MINOR,PATCH].join('.')
 
   def self.version
@@ -12,7 +13,7 @@ module Base32
   end
 
   def self.banner
-    "base32-kai/#{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
+    "base32-alphabets/#{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
   end
 
   def self.root

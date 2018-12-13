@@ -2,9 +2,6 @@
 
 ## Todos
 
-rename module to Kai only without alias - why? why not?
-
-
 
 
 ## More Base32 Libraries and Encodings

@@ -7,4 +7,4 @@ require 'minitest/autorun'
 
 ## our own code
 
-require 'base32-kai'
+require 'base32-alphabets'
