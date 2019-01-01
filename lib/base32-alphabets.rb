@@ -26,8 +26,8 @@ def encode32( num_or_bytes )
   Base32.encode( num_or_bytes )
 end
 
-def decode32( str )
-  Base32.decode( str )
+def decode32( str_or_bytes )
+  Base32.decode( str_or_bytes )
 end
 
 

@@ -9,13 +9,14 @@ class Base
 
   def self.bytes( num_or_str )
     if num_or_str.is_a? String
-      str = num_or_str
-      num = decode( str )
+      str   = num_or_str
+      bytes = _decode( str )
     else  # assume number
-      num = num_or_str
+      num   = num_or_str
+      bytes = Base32._bytes( num )
     end
-    Base32._bytes( num )
   end
+
 
   # Converts a base10 integer to a base32 string.
   def self.encode( num_or_bytes )
