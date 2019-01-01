@@ -14,3 +14,4 @@ test/helper.rb
 test/test_base32_crockford.rb
 test/test_base32_electrologica.rb
 test/test_base32_kai.rb
+test/test_bytes.rb

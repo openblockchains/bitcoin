@@ -7,19 +7,33 @@
 module Base32
 class Base
 
+  def self.bytes( num_or_str )
+    if num_or_str.is_a? String
+      str = num_or_str
+      num = decode( str )
+    else  # assume number
+      num = num_or_str
+    end
+    Base32._bytes( num )
+  end
+
+
   # Converts a base10 integer to a base32 string.
-  def self.encode( num, klass:, group: nil, sep: ' ' )
+  def self._encode( num )
     buf = String.new
     while num >= BASE
       ## puts "num=#{num}"
       mod = num % BASE
       ## puts "  mod=#{mod} == #{klass::ALPHABET[mod]}"
-      buf = klass::ALPHABET[mod] + buf
+      buf = alphabet[mod] + buf
       ## puts "buf=#{buf}"
-      num = (num - mod)/BASE
+      num = (num - mod) / BASE
     end
-    buf = klass::ALPHABET[num] + buf
+    alphabet[num] + buf
+  end
 
+  def self.encode( num, group: nil, sep: ' ' )
+    buf = _encode( num )
     ## check for pretty print/format e.g. group: 4 or something
     if group
       fmt( buf, group: group, sep: sep )
@@ -30,17 +44,17 @@ class Base
 
 
   def self.clean( str )
-    ## note: remove all non a-zA-Z0-9 alphanums e.g. space ( ), dash (-), etc.
-    str = str.gsub( /[^a-zA-Z0-9]/, '' )
+    ## note: remove space ( ), dash (-), slash (/) for now as "allowed / supported" separators
+    str.tr( ' -/', '' )
   end
 
   # Converts a base32 string to a base10 integer.
-  def self.decode( str, klass: )
+  def self.decode( str )
     str = clean( str )
 
     num = 0
     str.reverse.each_char.with_index do |char,index|
-      code = klass::NUMBER[char]
+      code = number[char]
       raise ArgumentError, "Value passed not a valid base32 string - >#{char}< not found in alphabet"  if code.nil?
       num += code * (BASE**(index))
     end
@@ -62,7 +76,7 @@ class Base
 
 ########################
 ## (private) helpers
-  def self.build_binary( alphabet )
+  def self.build_binary
     ## e.g. '00000', '00001', '00010', '00011', etc.
     alphabet.each_with_index.reduce({}) do |h, (char,index)|
       # note: also (auto-)add upcase letter (e.g. aA, bB, etc.)
@@ -72,7 +86,7 @@ class Base
     end
   end
 
-  def self.build_code( alphabet )
+  def self.build_code
     ## e.g. '00', '01', '02', '03', '04', etc.
     alphabet.each_with_index.reduce({}) do |h, (char,index)|
       # note: also (auto-)add upcase letter (e.g. aA, bB, etc.)

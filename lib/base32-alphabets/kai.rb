@@ -8,6 +8,7 @@
 
 module Base32
 class Kai < Base
+
 # See https://en.wikipedia.org/wiki/Base58
 ## Note: aplpabet used for encoding
 ALPHABET = %w[ 1 2 3 4 5 6 7 8
@@ -15,10 +16,8 @@ ALPHABET = %w[ 1 2 3 4 5 6 7 8
                h i j k m n o p
                q r s t u v w x]
 
-def self.encode( num, group: nil, sep: ' ' )
-  super( num, klass: self,
-              group: group, sep: sep )
-end
+def self.alphabet() ALPHABET; end    ## add alpha / char aliases - why? why not?
+
 
 
 ## Note:
@@ -61,8 +60,6 @@ NUMBER = {    ## rename INTEGER /INT - why? why not??
   'x' => 31, 'X' => 31
 }
 
-def self.decode( str ) super( str, klass: self ); end
-
 
 =begin
 BINARY = {
@@ -102,14 +99,14 @@ BINARY = {
 =end
 
 ## simple hash map (helper) for conversion to binary string
-BINARY = build_binary( ALPHABET )
+BINARY = build_binary()
 ## add special cases too
 BINARY['l'] = BINARY['1']   ## 1 == l / L
 BINARY['L'] = BINARY['1']
 BINARY['0'] = BINARY['o']   ## o / O == 0
 
 
-CODE   = build_code( ALPHABET )
+CODE   = build_code()
 ## add special cases too
 CODE['l'] = CODE['1']   ## 1 == l / L
 CODE['L'] = CODE['1']
@@ -119,6 +116,10 @@ CODE['0'] = CODE['o']   ## o / O == 0
 ## add shortcuts (convenience) aliases
 BIN = BINARY
 NUM = NUMBER
+
+def self.number() NUMBER; end        ## add num alias - why? why not?
+def self.code() CODE; end
+def self.binary() BINARY; end        ## add bin alias - why? why not?
 
 end # class Kai
 end # module Base32

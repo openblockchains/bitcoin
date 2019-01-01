@@ -32,7 +32,7 @@ def test_kai
    pp hex
 
    Base32.format = :kai
-   kai2 = Base32.encode( hex )
+   kai2  = Base32.encode( hex )
    pp kai
    pp kai2
 
@@ -50,10 +50,14 @@ def test_kai
    pp hex2
    assert_equal hex, hex2
 
-   kai3 = Base32::Kai.encode( hex )
-   hex3 = Base32::Kai.decode( kai3 )
-   assert_equal hex, hex3
-   assert_equal kai, kai3
+   kai3  = Base32::Kai.encode( hex )
+   hex3  = Base32::Kai.decode( kai3 )
+   assert_equal hex,   hex3
+   assert_equal kai,   kai3
+
+   kai3a = Base32::Kai._encode( hex )
+   assert_equal kai3,  kai3a
+
 
    puts "kai.length: #{kai.length}"  ## 48
    puts "  first: #{kai[0]}"

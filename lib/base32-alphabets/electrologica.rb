@@ -8,8 +8,22 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
                  16 17 18 19 20 21 22 23
                  24 25 26 27 28 29 30 31 ]
 
+  def self.alphabet() ALPHABET; end    ## add alpha / char aliases - why? why not?
+
+
+  def self.bytes( num_or_str )
+    if num_or_str.is_a? String
+      str = num_or_str
+      num = decode( str )
+    else  # assume number
+      num = num_or_str
+    end
+    Base32._bytes( num )
+  end
+
+
   # Converts a base10 integer to a base32 string.
-  def self.encode( num, group: nil, sep: ' ' )
+  def self._encode( num )
     buf = String.new
     while num >= BASE
       # puts "num=#{num}"
@@ -19,8 +33,11 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
       # puts "buf=#{buf}"
       num = (num - mod)/BASE
     end
-    buf = ALPHABET[num] + buf
+    ALPHABET[num] + buf
+  end
 
+  def self.encode( num, group: nil, sep: ' ' )
+    buf = _encode( num )
     ## check for pretty print/format e.g. group: 4 or something
     if group
       fmt( buf, group: group, sep: sep )
@@ -82,6 +99,10 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
   ## add shortcuts (convenience) aliases
   BIN = BINARY
   NUM = NUMBER
+
+  def self.number() NUMBER; end
+  def self.code() CODE; end
+  def self.binary() BINARY; end
 
 
   def self.clean( str )

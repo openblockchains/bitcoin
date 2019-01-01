@@ -13,10 +13,8 @@ ALPHABET = %w[ 0 1 2 3 4 5 6 7
                g h j k m n p q
                r s t v w x y z]
 
-def self.encode( num, group: nil, sep: ' ' )
-  super( num, klass: self,
-              group: group, sep: sep )
-end
+def self.alphabet() ALPHABET; end
+
 
 
 NUMBER = {    ## rename INTEGER /INT - why? why not??
@@ -54,11 +52,9 @@ NUMBER = {    ## rename INTEGER /INT - why? why not??
   'z' => 31, 'Z' => 31
 }
 
-def self.decode( str ) super( str, klass: self ); end
-
 
 ## simple hash map (helper) for conversion to binary string
-BINARY = build_binary( ALPHABET )
+BINARY = build_binary()
 ## add special cases too
 BINARY['o'] = BINARY['0']   ## 0 == o / 0
 BINARY['O'] = BINARY['0']
@@ -67,7 +63,7 @@ BINARY['L'] = BINARY['1']
 BINARY['i'] = BINARY['1']
 BINARY['I'] = BINARY['1']
 
-CODE   = build_code( ALPHABET )
+CODE   = build_code()
 ## add special cases too
 CODE['o'] = CODE['0']   ## 0 == o / 0
 CODE['O'] = CODE['0']
@@ -80,6 +76,10 @@ CODE['I'] = CODE['1']
 ## add shortcuts (convenience) aliases
 BIN = BINARY
 NUM = NUMBER
+
+def self.number() NUMBER; end
+def self.code() CODE; end
+def self.binary() BINARY; end
 
 end # class Crockford
 end # module Base32

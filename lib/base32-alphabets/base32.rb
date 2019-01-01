@@ -61,15 +61,33 @@ module Base32   ## Base32  (2^5 - 5-bits)
     klass.fmt( str, group: group, sep: sep )
   end
 
+  def self.bytes( num_or_str, klass: configuration.format )
+    klass.bytes( num_or_str )
+  end
+
+  ####
+  # (private) helper - note: leading underscore in name e.g. _bytes
+  def self._bytes( num )
+    b = []
+    while num >= BASE
+      mod = num % BASE
+      b << mod
+      num = (num - mod) / BASE
+    end
+    b << num
+    b = b.reverse
+    b
+  end
+
 
 
   ## encoding alphabet - letter-to-number by index / array
-  def self.alphabet( klass: configuration.format ) klass::ALPHABET; end
+  def self.alphabet( klass: configuration.format ) klass.alphabet; end
 
   ## decoding letter-to-number mapping / hash
-  def self.number( klass: configuration.format ) klass::NUMBER; end
+  def self.number( klass: configuration.format ) klass.number; end
   ## decoding letter-to-code mapping / hash
-  def self.code( klass: configuration.format ) klass::CODE; end
+  def self.code( klass: configuration.format ) klass.code; end
   ## decoding letter-to-binary mapping / hash
-  def self.binary( klass: configuration.format ) klass::BINARY; end
+  def self.binary( klass: configuration.format ) klass.binary; end
 end # module Base32
