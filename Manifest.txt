@@ -1,4 +1,4 @@
-HISTORY.md
+CHANGELOG.md
 LICENSE.md
 Manifest.txt
 README.md
@@ -11,5 +11,6 @@ lib/base32-alphabets/electrologica.rb
 lib/base32-alphabets/kai.rb
 lib/base32-alphabets/version.rb
 test/helper.rb
-test/test_base32.rb
 test/test_base32_crockford.rb
+test/test_base32_electrologica.rb
+test/test_base32_kai.rb

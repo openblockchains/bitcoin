@@ -15,7 +15,11 @@ ALPHABET = %w[ 1 2 3 4 5 6 7 8
                h i j k m n o p
                q r s t u v w x]
 
-def self.encode( num ) super( num, klass: self ); end
+def self.encode( num, group: nil, sep: ' ' )
+  super( num, klass: self,
+              group: group, sep: sep )
+end
+
 
 ## Note:
 ##   for decoding allow (misspelled) l/L for 1
@@ -99,6 +103,18 @@ BINARY = {
 
 ## simple hash map (helper) for conversion to binary string
 BINARY = build_binary( ALPHABET )
+## add special cases too
+BINARY['l'] = BINARY['1']   ## 1 == l / L
+BINARY['L'] = BINARY['1']
+BINARY['0'] = BINARY['o']   ## o / O == 0
+
+
+CODE   = build_code( ALPHABET )
+## add special cases too
+CODE['l'] = CODE['1']   ## 1 == l / L
+CODE['L'] = CODE['1']
+CODE['0'] = CODE['o']   ## o / O == 0
+
 
 ## add shortcuts (convenience) aliases
 BIN = BINARY

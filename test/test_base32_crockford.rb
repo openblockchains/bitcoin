@@ -43,19 +43,11 @@ class TestBase32Crockford < MiniTest::Test
     assert_equal 1234, Base32::Crockford.decode('1-6-j')
   end
 
-  def test_decoding_invalid_strings
-    assert_raises(ArgumentError) { Base32::Crockford.decode("'+?") }
-  end
 
-
-=begin
-  def test_length_and_hyphenization
-    assert_equal "0016J", Base32::Crockford.encode(1234, :length => 5)
-    assert_equal "0-01-6J",
-      Base32::Crockford.encode(1234, :length => 5, :split => 2)
-    assert_equal "00-010",
-      Base32::Crockford.encode(32, :length => 5, :split => 3)
+  def test_group_and_hyphens
+    assert_equal "16j",  Base32::Crockford.encode( 1234, group: 5)
+    assert_equal "1-6j", Base32::Crockford.encode( 1234, group: 2, sep: '-')
+    assert_equal "10",   Base32::Crockford.encode(   32, group: 3)
   end
-=end
 
 end  # class TestBase32Crockford

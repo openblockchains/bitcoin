@@ -15,7 +15,7 @@ Hoe.spec 'base32-alphabets' do
 
   # switch extension to .markdown for gihub formatting
   self.readme_file  = 'README.md'
-  self.history_file = 'HISTORY.md'
+  self.history_file = 'CHANGELOG.md'
 
   self.extra_deps = [
   ]

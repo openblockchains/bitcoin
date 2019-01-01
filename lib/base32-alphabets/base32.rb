@@ -49,13 +49,27 @@ module Base32   ## Base32  (2^5 - 5-bits)
 
 
 
-  def self.encode( num, klass: configuration.format ) klass.encode( num ); end
-  def self.decode( str, klass: configuration.format ) klass.decode( str ); end
-  def self.fmt( str, klass: configuration.format ) klass.fmt( str );    end
+  def self.encode( num, klass: configuration.format, group: nil, sep: ' ' )
+    klass.encode( num, group: group, sep: sep )
+  end
+
+  def self.decode( str, klass: configuration.format )
+    klass.decode( str )
+  end
+
+  def self.fmt( str, klass: configuration.format, group: 4, sep: ' ' )
+    klass.fmt( str, group: group, sep: sep )
+  end
+
+
 
   ## encoding alphabet - letter-to-number by index / array
   def self.alphabet( klass: configuration.format ) klass::ALPHABET; end
-  ## decoding number-to-letter mapping / hash
-  def self.number( klass: configuration.format ) klass::NUMBER; end
 
+  ## decoding letter-to-number mapping / hash
+  def self.number( klass: configuration.format ) klass::NUMBER; end
+  ## decoding letter-to-code mapping / hash
+  def self.code( klass: configuration.format ) klass::CODE; end
+  ## decoding letter-to-binary mapping / hash
+  def self.binary( klass: configuration.format ) klass::BINARY; end
 end # module Base32

@@ -13,7 +13,10 @@ ALPHABET = %w[ 0 1 2 3 4 5 6 7
                g h j k m n p q
                r s t v w x y z]
 
-def self.encode( num ) super( num, klass: self ); end
+def self.encode( num, group: nil, sep: ' ' )
+  super( num, klass: self,
+              group: group, sep: sep )
+end
 
 
 NUMBER = {    ## rename INTEGER /INT - why? why not??
@@ -56,6 +59,23 @@ def self.decode( str ) super( str, klass: self ); end
 
 ## simple hash map (helper) for conversion to binary string
 BINARY = build_binary( ALPHABET )
+## add special cases too
+BINARY['o'] = BINARY['0']   ## 0 == o / 0
+BINARY['O'] = BINARY['0']
+BINARY['l'] = BINARY['1']   ## 1  == l / L == i / I
+BINARY['L'] = BINARY['1']
+BINARY['i'] = BINARY['1']
+BINARY['I'] = BINARY['1']
+
+CODE   = build_code( ALPHABET )
+## add special cases too
+CODE['o'] = CODE['0']   ## 0 == o / 0
+CODE['O'] = CODE['0']
+CODE['l'] = CODE['1']   ## 1  == l / L == i / I
+CODE['L'] = CODE['1']
+CODE['i'] = CODE['1']
+CODE['I'] = CODE['1']
+
 
 ## add shortcuts (convenience) aliases
 BIN = BINARY

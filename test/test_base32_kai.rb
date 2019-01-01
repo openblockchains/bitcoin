@@ -2,13 +2,13 @@
 
 ###
 #  to run use
-#     ruby -I ./lib -I ./test test/test_base32.rb
+#     ruby -I ./lib -I ./test test/test_base32_kai.rb
 
 
 require 'helper'
 
 
-class TestBase32 < MiniTest::Test
+class TestBase32Kai < MiniTest::Test
 
 
 def test_kai
@@ -19,7 +19,9 @@ def test_kai
    binary = 0b0000000000000000010010100101001010010011000111001110010000001000010111000001010010111101110011100000000101001010000000110001100010000100011010100000110010000000100011000110000000101001010010100110001100010100101000110100101000010010100101011011100111001110  # binary
    hex    = 0x00004a52931ce4085c14bdce014a0318846a0c808c60294a6314a34a_1295_b9ce   # hex
 
-   kai_fmt = "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
+   kai_fmt    = "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
+   kai_fmt_ii = "aaaa/7885/22f2/agff/1661/7755/e979/2441/6667/7664/a9aa/cfff"
+   kai_fmt8   = "aaaa7885 22f2agff 16617755 e9792441 66677664 a9aacfff"
    kai     = kai_fmt.gsub( ' ', '' )
 
    assert_equal binary, hex
@@ -35,7 +37,13 @@ def test_kai
    pp kai2
 
    assert_equal kai, kai2
-   assert_equal kai_fmt, Base32::Kai.fmt( kai2 )
+   assert_equal kai_fmt,    Base32::Kai.fmt( kai2 )
+   assert_equal kai_fmt_ii, Base32::Kai.fmt( kai2, sep: '/' )
+   assert_equal kai_fmt8,   Base32::Kai.fmt( kai2, group: 8 )
+
+   assert_equal kai_fmt,    Base32::Kai.encode( hex, group: 4 )
+   assert_equal kai_fmt_ii, Base32::Kai.encode( hex, group: 4, sep: '/' )
+   assert_equal kai_fmt8,   Base32::Kai.encode( hex, group: 8 )
 
 
    hex2 = Base32.decode( kai2 )

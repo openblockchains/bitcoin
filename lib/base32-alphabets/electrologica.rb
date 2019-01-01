@@ -9,7 +9,7 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
                  24 25 26 27 28 29 30 31 ]
 
   # Converts a base10 integer to a base32 string.
-  def self.encode( num )
+  def self.encode( num, group: nil, sep: ' ' )
     buf = String.new
     while num >= BASE
       # puts "num=#{num}"
@@ -19,13 +19,16 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
       # puts "buf=#{buf}"
       num = (num - mod)/BASE
     end
-    ALPHABET[num] + buf
+    buf = ALPHABET[num] + buf
+
+    ## check for pretty print/format e.g. group: 4 or something
+    if group
+      fmt( buf, group: group, sep: sep )
+    else
+      buf
+    end
   end
 
-  ## Note:
-  ##   for decoding allow (misspelled) l/L for 1
-  ##    and               (misspelled)  0  for o/O - why? why not?
-  ##    and UPPERCASE letters - why? why not?
 
   NUMBER = {    ## rename INTEGER /INT - why? why not??
     '00' => 0,  '0' => 0,
@@ -62,17 +65,35 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
     '31' => 31,
   }
 
+  BINARY = ALPHABET.each_with_index.reduce({}) do |h, (char,index)|
+    ## e.g. '00000', '00001', '00010', '00011', etc.
+       h[char]           = '%05b' % index
+       h[char.to_i.to_s] = '%05b' % index   if char =~ /0[0-9]/ # e.g. 00, 01, etc.
+       h
+  end
+
+  CODE = ALPHABET.each_with_index.reduce({}) do |h, (char,index)|
+     ## e.g. '00', '01', '02', '03', '04', etc.
+       h[char]           = '%02d' % index
+       h[char.to_i.to_s] = '%02d' % index   if char =~ /0[0-9]/ # e.g. 00, 01, etc.
+       h
+  end
 
   ## add shortcuts (convenience) aliases
-  ## BIN = BINARY
+  BIN = BINARY
   NUM = NUMBER
 
-  # Converts a base32 string to a base10 integer.
-  def self.decode( str )
+
+  def self.clean( str )
     ## note: allow spaces or slash (/) for dashes (-)
     str = str.strip  ## remove leading and trailing spaces (first)
     str = str.tr( ' /', '-' )
     str = str.gsub( /-{2,}/, '-' )  ## fold more than one dash into one
+  end
+
+  # Converts a base32 string to a base10 integer.
+  def self.decode( str )
+    str = clean( str )
 
     num = 0
     str.split('-').reverse.each.with_index do |char,index|
@@ -84,18 +105,17 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
   end
 
 
-  def self.fmt( str, sep: '-' )
-    ## note: allow spaces or slash (/) for dashes (-)
-    str = str.strip  ## remove leading and trailing spaces (first)
-    str = str.tr( ' /', '-' )
-    str = str.gsub( /-{2,}/, '-' )  ## fold more than one dash into one
+  def self.fmt( str, group: 4, sep: ' ' )
+    ## todo/fix: check sep - MUST be space () or slash (/) for now!!!!!
+
+    str = clean( str )
 
     ## format in groups of four (4) separated by space
-    ##  e.g.  ccac7787fa7fafaa16467755f9ee444467667366cccceede
-    ##     :  ccac 7787 fa7f afaa 1646 7755 f9ee 4444 6766 7366 cccc eede
+    ##  e.g.  09-09-09-09-06-07-07-04-01-01-14-01-09-15-14-14-00-05-05-00
+    ##     :  09-09-09-09 06-07-07-04 01-01-14-01 09-15-14-14 00-05-05-00
 
     ## note: use reverse - if not divided by four that leading slice gets cut short
-    str.split('-').reverse.each_slice(4).map { |slice| slice.reverse.join( sep ) }.reverse.join( ' ' )
+    str.split('-').reverse.each_slice( group ).map { |slice| slice.reverse.join( '-' ) }.reverse.join( sep )
   end
 
 end # class Electrologica
