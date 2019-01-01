@@ -50,6 +50,22 @@ def test_bytes_kai
    assert_equal bytes, bytes8
    assert_equal bytes, bytes9
    assert_equal bytes, bytes10
+
+   ## try encode bytes
+   assert_equal kai,     Base32.encode( bytes )
+   assert_equal kai_fmt, Base32.fmt( bytes )
+
+   assert_equal kai,     Base32::Kai.encode( bytes )
+   assert_equal kai_fmt, Base32::Kai.fmt( bytes )
+
+   ## try decode/pack bytes
+   hex = Base32::Kai.decode( kai )
+   assert_equal hex,                  Base32._pack( bytes )
+   assert_equal Base32._bytes( hex ), Base32._bytes( Base32._pack( bytes ))
+   assert_equal bytes,                Base32._bytes( hex )
+
+   assert_equal hex, Base32.decode( bytes )
+   assert_equal hex, Base32::Kai.decode( bytes )
 end
 
 
@@ -81,6 +97,22 @@ def test_bytes_crockford
    assert_equal bytes, bytes8
    assert_equal bytes, bytes9
    assert_equal bytes, bytes10
+
+   ## try encode bytes
+   assert_equal crockford,     Base32.encode( bytes )
+   assert_equal crockford_fmt, Base32.fmt( bytes )
+
+   assert_equal crockford,     Base32::Crockford.encode( bytes )
+   assert_equal crockford_fmt, Base32::Crockford.fmt( bytes )
+
+   ## try decode/pack bytes
+   hex = Base32::Crockford.decode( crockford )
+   assert_equal hex,                  Base32._pack( bytes )
+   assert_equal Base32._bytes( hex ), Base32._bytes( Base32._pack( bytes ))
+   assert_equal bytes,                Base32._bytes( hex )
+
+   assert_equal hex, Base32.decode( bytes )
+   assert_equal hex, Base32::Crockford.decode( bytes )
 end
 
 
@@ -107,6 +139,22 @@ def test_bytes_electrologica
    assert_equal bytes, bytes6
    assert_equal bytes, bytes7
    assert_equal bytes, bytes8
+
+   ## try encode bytes
+   assert_equal el,     Base32.encode( bytes )
+   assert_equal el_fmt, Base32.fmt( bytes )
+
+   assert_equal el,     Base32::Electrologica.encode( bytes )
+   assert_equal el_fmt, Base32::Electrologica.fmt( bytes )
+
+   ## try decode/pack bytes
+   hex = Base32::Electrologica.decode( el )
+   assert_equal hex,                  Base32._pack( bytes )
+   assert_equal Base32._bytes( hex ), Base32._bytes( Base32._pack( bytes ))
+   assert_equal bytes,                Base32._bytes( hex )
+
+   assert_equal hex, Base32.decode( bytes )
+   assert_equal hex, Base32::Electrologica.decode( bytes )
 end
 
 end  # class TestBytes

@@ -64,9 +64,9 @@ pp str2
 # => "aaaa788522f2agff16617755e979244166677664a9aacfff"
 pp str == str2
 # => true
-pp Kai.fmt( str2 )  # note: defaults to group: 4
+pp Kai.fmt( str2 )
 # => "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
-pp Kai.encode( hex, group: 4 )  # all-in-one "shortcut" for Kai.fmt( Kai.encode( hex ))
+pp Kai.fmt( hex )   # all-in-one "shortcut" for Kai.fmt( Kai.encode( hex ))
 # => "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
 
 hex2 = Kai.decode( str2 )   ## text to (binary) number
@@ -92,9 +92,9 @@ Base32.format = :kai
 str = Base32.encode( hex )   ## (binary) number to text
 pp str
 # => "aaaa788522f2agff16617755e979244166677664a9aacfff"
-pp Base32.fmt( str ) # note: defaults to group: 4
+pp Base32.fmt( str )
 # => "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
-pp Base32.encode( hex, group: 4 )  # all-in-one "shortcut" for Base32.fmt( Base32.encode( hex ))
+pp Base32.fmt( hex )  # all-in-one "shortcut" for Base32.fmt( Base32.encode( hex ))
 # => "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
 pp = Base32.decode( str )   ## text to (binary) number
 # => 512955438081049600613224346938352058409509756310147795204209859701881294

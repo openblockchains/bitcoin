@@ -35,8 +35,8 @@ def test_electrologica
    assert_equal el_fmt,    Base32::Electrologica.fmt( el2 )
    assert_equal el_fmt_ii, Base32::Electrologica.fmt( el2, sep: '/' )
 
-   assert_equal el_fmt,    Base32::Electrologica.encode( hex, group: 4 )
-   assert_equal el_fmt_ii, Base32::Electrologica.encode( hex, group: 4, sep: '/' )
+   assert_equal el_fmt,    Base32::Electrologica.fmt( hex, group: 4 )
+   assert_equal el_fmt_ii, Base32::Electrologica.fmt( hex, group: 4, sep: '/' )
 
 
    hex2 = Base32.decode( el2 )

@@ -11,13 +11,13 @@ class Crockford < Base
 ALPHABET = %w[ 0 1 2 3 4 5 6 7
                8 9 a b c d e f
                g h j k m n p q
-               r s t v w x y z]
+               r s t v w x y z ]
 
 def self.alphabet() ALPHABET; end
 
 
 
-NUMBER = {    ## rename INTEGER /INT - why? why not??
+NUMBER = {
   '0' => 0, 'o' => 0, 'O'=> 0,
   '1' => 1, 'l' => 1, 'L'=> 1, 'i'=> 1, 'I' => 1,
   '2' => 2,
@@ -51,33 +51,17 @@ NUMBER = {    ## rename INTEGER /INT - why? why not??
   'y' => 30, 'Y' => 30,
   'z' => 31, 'Z' => 31
 }
+def self.number() NUMBER; end
 
 
 ## simple hash map (helper) for conversion to binary string
-BINARY = build_binary()
-## add special cases too
-BINARY['o'] = BINARY['0']   ## 0 == o / 0
-BINARY['O'] = BINARY['0']
-BINARY['l'] = BINARY['1']   ## 1  == l / L == i / I
-BINARY['L'] = BINARY['1']
-BINARY['i'] = BINARY['1']
-BINARY['I'] = BINARY['1']
-
-CODE   = build_code()
-## add special cases too
-CODE['o'] = CODE['0']   ## 0 == o / 0
-CODE['O'] = CODE['0']
-CODE['l'] = CODE['1']   ## 1  == l / L == i / I
-CODE['L'] = CODE['1']
-CODE['i'] = CODE['1']
-CODE['I'] = CODE['1']
-
+BINARY = _build_binary()
+CODE   = _build_code()
 
 ## add shortcuts (convenience) aliases
 BIN = BINARY
 NUM = NUMBER
 
-def self.number() NUMBER; end
 def self.code() CODE; end
 def self.binary() BINARY; end
 

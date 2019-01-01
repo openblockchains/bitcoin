@@ -48,9 +48,9 @@ class TestBase32Crockford < MiniTest::Test
   end
 
   def test_group_and_hyphens
-    assert_equal "16j",  Base32::Crockford.encode( 1234, group: 5)
-    assert_equal "1-6j", Base32::Crockford.encode( 1234, group: 2, sep: '-')
-    assert_equal "10",   Base32::Crockford.encode(   32, group: 3)
+    assert_equal "16j",  Base32::Crockford.fmt( 1234, group: 5)
+    assert_equal "1-6j", Base32::Crockford.fmt( 1234, group: 2, sep: '-')
+    assert_equal "10",   Base32::Crockford.fmt(   32, group: 3)
   end
 
 end  # class TestBase32Crockford

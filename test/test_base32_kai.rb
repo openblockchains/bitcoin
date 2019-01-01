@@ -41,9 +41,9 @@ def test_kai
    assert_equal kai_fmt_ii, Base32::Kai.fmt( kai2, sep: '/' )
    assert_equal kai_fmt8,   Base32::Kai.fmt( kai2, group: 8 )
 
-   assert_equal kai_fmt,    Base32::Kai.encode( hex, group: 4 )
-   assert_equal kai_fmt_ii, Base32::Kai.encode( hex, group: 4, sep: '/' )
-   assert_equal kai_fmt8,   Base32::Kai.encode( hex, group: 8 )
+   assert_equal kai_fmt,    Base32::Kai.fmt( hex, group: 4 )
+   assert_equal kai_fmt_ii, Base32::Kai.fmt( hex, group: 4, sep: '/' )
+   assert_equal kai_fmt8,   Base32::Kai.fmt( hex, group: 8 )
 
 
    hex2 = Base32.decode( kai2 )
@@ -54,9 +54,6 @@ def test_kai
    hex3  = Base32::Kai.decode( kai3 )
    assert_equal hex,   hex3
    assert_equal kai,   kai3
-
-   kai3a = Base32::Kai._encode( hex )
-   assert_equal kai3,  kai3a
 
 
    puts "kai.length: #{kai.length}"  ## 48

@@ -49,21 +49,22 @@ module Base32   ## Base32  (2^5 - 5-bits)
 
 
 
-  def self.encode( num, klass: configuration.format, group: nil, sep: ' ' )
-    klass.encode( num, group: group, sep: sep )
+  def self.encode( num_or_bytes, klass: configuration.format )
+    klass.encode( num_or_bytes )
   end
 
-  def self.decode( str, klass: configuration.format )
-    klass.decode( str )
+  def self.decode( str_or_bytes, klass: configuration.format )
+    klass.decode( str_or_bytes )
   end
 
-  def self.fmt( str, klass: configuration.format, group: 4, sep: ' ' )
-    klass.fmt( str, group: group, sep: sep )
+  def self.fmt( str_or_num_or_bytes, klass: configuration.format, group: 4, sep: ' ' )
+    klass.fmt( str_or_num_or_bytes, group: group, sep: sep )
   end
 
   def self.bytes( num_or_str, klass: configuration.format )
     klass.bytes( num_or_str )
   end
+
 
   ####
   # (private) helper - note: leading underscore in name e.g. _bytes
@@ -77,6 +78,14 @@ module Base32   ## Base32  (2^5 - 5-bits)
     b << num
     b = b.reverse
     b
+  end
+
+  def self._pack( bytes )
+    num = 0
+    bytes.reverse.each_with_index do |byte,index|
+      num += byte * (BASE**(index))
+    end
+    num
   end
 
 

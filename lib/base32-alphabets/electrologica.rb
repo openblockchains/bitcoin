@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Base32
-class Electrologica   ## Base32  (2^5 - 5-bits)
+class Electrologica < Base  ## Base32  (2^5 - 5-bits)
 
   ALPHABET = %w[ 00 01 02 03 04 05 06 07
                  08 09 10 11 12 13 14 15
@@ -11,43 +11,7 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
   def self.alphabet() ALPHABET; end    ## add alpha / char aliases - why? why not?
 
 
-  def self.bytes( num_or_str )
-    if num_or_str.is_a? String
-      str = num_or_str
-      num = decode( str )
-    else  # assume number
-      num = num_or_str
-    end
-    Base32._bytes( num )
-  end
-
-
-  # Converts a base10 integer to a base32 string.
-  def self._encode( num )
-    buf = String.new
-    while num >= BASE
-      # puts "num=#{num}"
-      mod = num % BASE
-      # puts "  mod=#{mod} == #{ALPHABET[mod]}"
-      buf = "-" + ALPHABET[mod] + buf    ## note: add - separator
-      # puts "buf=#{buf}"
-      num = (num - mod)/BASE
-    end
-    ALPHABET[num] + buf
-  end
-
-  def self.encode( num, group: nil, sep: ' ' )
-    buf = _encode( num )
-    ## check for pretty print/format e.g. group: 4 or something
-    if group
-      fmt( buf, group: group, sep: sep )
-    else
-      buf
-    end
-  end
-
-
-  NUMBER = {    ## rename INTEGER /INT - why? why not??
+  NUMBER = {
     '00' => 0,  '0' => 0,
     '01' => 1,  '1' => 1,
     '02' => 2,  '2' => 2,
@@ -82,54 +46,33 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
     '31' => 31,
   }
 
-  BINARY = ALPHABET.each_with_index.reduce({}) do |h, (char,index)|
-    ## e.g. '00000', '00001', '00010', '00011', etc.
-       h[char]           = '%05b' % index
-       h[char.to_i.to_s] = '%05b' % index   if char =~ /0[0-9]/ # e.g. 00, 01, etc.
-       h
-  end
+  def self.number() NUMBER; end
 
-  CODE = ALPHABET.each_with_index.reduce({}) do |h, (char,index)|
-     ## e.g. '00', '01', '02', '03', '04', etc.
-       h[char]           = '%02d' % index
-       h[char.to_i.to_s] = '%02d' % index   if char =~ /0[0-9]/ # e.g. 00, 01, etc.
-       h
-  end
+  BINARY = _build_binary()
+  CODE   = _build_code()
 
   ## add shortcuts (convenience) aliases
   BIN = BINARY
   NUM = NUMBER
 
-  def self.number() NUMBER; end
   def self.code() CODE; end
   def self.binary() BINARY; end
 
 
-  def self.clean( str )
-    ## note: allow spaces or slash (/) for dashes (-)
-    str = str.strip  ## remove leading and trailing spaces (first)
-    str = str.tr( ' /', '-' )
-    str = str.gsub( /-{2,}/, '-' )  ## fold more than one dash into one
-  end
 
-  # Converts a base32 string to a base10 integer.
-  def self.decode( str )
-    str = clean( str )
-
-    num = 0
-    str.split('-').reverse.each.with_index do |char,index|
-      code = NUMBER[char]
-      raise ArgumentError, "Value passed not a valid base32 string - >#{char}< not found in alphabet"  if code.nil?
-      num += code * (BASE**(index))
+  # Converts a base10 integer to a base32 string.
+  def self._encode( bytes )
+    bytes.each_with_index.reduce(String.new) do |buf, (byte,i)|
+      buf << "-"    if i > 0   ## add separator (-) EXCEPT for first char
+      buf << alphabet[byte]
+      buf
     end
-    num
   end
 
-
-  def self.fmt( str, group: 4, sep: ' ' )
+  def self._fmt( str, group: 4, sep: ' ' )
     ## todo/fix: check sep - MUST be space () or slash (/) for now!!!!!
 
-    str = clean( str )
+    str = _clean( str )
 
     ## format in groups of four (4) separated by space
     ##  e.g.  09-09-09-09-06-07-07-04-01-01-14-01-09-15-14-14-00-05-05-00
@@ -137,6 +80,25 @@ class Electrologica   ## Base32  (2^5 - 5-bits)
 
     ## note: use reverse - if not divided by four that leading slice gets cut short
     str.split('-').reverse.each_slice( group ).map { |slice| slice.reverse.join( '-' ) }.reverse.join( sep )
+  end
+
+
+  # Converts a base32 string to a base10 integer.
+  def self._decode( str )
+    str = _clean( str )
+    str.split('-').reduce([]) do |bytes,char|
+      byte = number[char]
+      raise ArgumentError, "Value passed not a valid base32 string - >#{char}< not found in alphabet"  if byte.nil?
+      bytes << byte
+      bytes
+    end
+  end
+
+  def self._clean( str )
+    ## note: allow spaces or slash (/) for dashes (-)
+    str = str.strip  ## remove leading and trailing spaces (first)
+    str = str.tr( ' /', '-' )
+    str = str.gsub( /-{2,}/, '-' )  ## fold more than one dash into one
   end
 
 end # class Electrologica

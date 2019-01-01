@@ -22,13 +22,20 @@ Crockford     = Base32::Crockford
 Electrologica = Base32::Electrologica
 
 
-def encode32( num, group: nil, sep: ' ' )
-  Base32.encode( num, group: group, sep: sep )
+def encode32( num_or_bytes )
+  Base32.encode( num_or_bytes )
 end
 
-def decode32( num )
+def decode32( str )
   Base32.decode( str )
 end
+
+
+## -- add bytes32 - why? why not?
+##
+## def bytes32( num_or_str )
+##  Base32.bytes( num_or_str )
+## end
 
 
 
