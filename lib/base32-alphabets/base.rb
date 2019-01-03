@@ -39,10 +39,7 @@ class Base
   def self.fmt( str_or_num_or_bytes, group: 4, sep: ' ' )
     if str_or_num_or_bytes.is_a? String
       str = str_or_num_or_bytes
-    else  ## assume number
-      ## str_or_num_or_bytes.is_a?(Integer) ||
-      ## str_or_num_or_bytes.is_a?(Bignum) ||
-      ## str_or_num_or_bytes.is_a?(Fixnum)
+    else  ## assume number (Integer) or bytes (Array)
       num_or_bytes = str_or_num_or_bytes
       str = encode( num_or_bytes )   ## auto-encode (shortcut)
     end
@@ -92,7 +89,7 @@ class Base
   ## (private) helpers
   def self._build_binary
     ## e.g. '00000', '00001', '00010', '00011', etc.
-    number.each.reduce({}) do |h, (char,index)|
+    number.reduce({}) do |h, (char,index)|
       h[char]        = '%05b' % index
       h
     end
@@ -100,7 +97,7 @@ class Base
 
   def self._build_code
     ## e.g. '00', '01', '02', '03', '04', etc.
-    number.each.reduce({}) do |h, (char,index)|
+    number.reduce({}) do |h, (char,index)|
       h[char]        = '%02d' % index
       h
     end
