@@ -265,14 +265,13 @@ pp = Base32.decode( str )   ## text to (binary) number
 
 ## Real World Usage
 
-See [copycats command line tool (and core library)(https://github.com/cryptocopycats/copycats) - crypto cats / kitties collectibles unchained - buy! sell! hodl! sire! - play for free - runs off the blockchain - no ether / gas required
+See [copycats command line tool (and core library)](https://github.com/cryptocopycats/copycats) - crypto cats / kitties collectibles unchained - buy! sell! hodl! sire! - play for free - runs off the blockchain - no ether / gas required
 
 
 ## More Documentation / Articles / Samples
 
-- [Programming Crypto Collectibles Step-by-Step Book / Guide](https://github.com/cryptocopycats/programming-cryptocollectibles)
+- [Programming Crypto Collectibles Step-by-Step Book / Guide](https://github.com/cryptocopycats/programming-cryptocollectibles) - 
 Let's start with CryptoKitties & Copycats. Inside Unique Bits & Bytes on the Blockchain...
-
 - [Ruby Quiz - Challenge #8 - Base32 Alphabet](https://github.com/planetruby/quiz/tree/master/008) - Convert the Super "Sekretoooo" 240-Bit CryptoKitties Genome to Kai Notation - Annipurrsary!
 
 
