@@ -3,12 +3,15 @@
 
 ## TL;DR (Too Long; Didn't Read) - Management Executive Summary
 
-[**How Bitcoin Mining Works**]( https://twitter.com/Tr0llyTr0llFace/status/1119657122126602240) by Trolly McTrollface
+> How Bitcoin Mining Works: 
+>
+> Me: I just set a $100 bill on fire.  
+> Everyone: That's stupid.  
+> Me: I have undeniable proof.  
+> Bitcoiners: We'll give you $200 for it.  
+>
+> -- [Trolly McTrollface]( https://twitter.com/Tr0llyTr0llFace/status/1119657122126602240)
 
-Me: I just set a $100 bill on fire.  
-Everyone: That's stupid.  
-Me: I have undeniable proof.  
-Bitcoiners: We'll give you $200 for it.  
 
 
 
