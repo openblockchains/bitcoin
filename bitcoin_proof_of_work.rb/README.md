@@ -3,8 +3,8 @@
 
 ## TL;DR (Too Long; Didn't Read) - Management Executive Summary
 
-> How Bitcoin Mining Works: 
->
+How Bitcoin Mining Works: 
+
 > Me: I just set a $100 bill on fire.  
 > Everyone: That's stupid.  
 > Me: I have undeniable proof.  
@@ -556,14 +556,15 @@ to 112,000,000,000,000,000,000/s) you "buy" by hashing more and burning more ene
 Burn, baby, burn! The Planet cannot win. Is there a Planet B?
 
 
-[**How to Buy Bitcoin (The CO₂-Friendly Way)**](https://twitter.com/Tr0llyTr0llFace/status/1130390061499990016) by Trolly McTrollface
+How to Buy Bitcoin (The CO₂-Friendly Way):
 
-1. Take one $50 bill, five $10 bills, or ten $5 bills (I wouldn’t recommend change - stay with paper fiat).
-2. Go to the bathroom.
-3. Lift the lid of the loo.
-4. Throw money in.
-5. Flush down water.
-
-Congrats! You just purchased $50 worth of Bitcoin - without fucking the planet!  
-
+> 1. Take one $50 bill, five $10 bills, or ten $5 bills (I wouldn’t recommend change - stay with paper money).
+> 2. Go to the bathroom.
+> 3. Lift the lid of the loo.
+> 4. Throw money in.
+> 5. Flush down water.
+>
+> Congrats! You just purchased $50 worth of Bitcoin - without fucking the planet!  
+>
+> -- [Trolly McTrollface](https://twitter.com/Tr0llyTr0llFace/status/1130390061499990016)
 
