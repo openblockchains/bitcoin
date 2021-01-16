@@ -1,4 +1,4 @@
-# Bitcoins, Bitcoins, Bitcoins
+# Bitcoin! Bitcoin! Bitcoin!
 
 
 Dear sir, how do I get rich in bits-coin?
